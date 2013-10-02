@@ -4,7 +4,7 @@ import sys
 from optparse import OptionParser
 
 __author__ = "Matt Croydon"
-__version__ = (0, 1, 0)
+__version__ = (0, 1, 1)
 __license__ = "BSD"
 
 # Many thanks to Tim Whitlock for the best darned unicode emoji reference on the internet.
