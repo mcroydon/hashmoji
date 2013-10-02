@@ -6,7 +6,6 @@ from optparse import OptionParser
 __author__ = "Matt Croydon"
 __version__ = (0, 1, 0)
 __license__ = "BSD"
-__all__ = [HashmojiException, IncompatibleDigest, InvalidByteLength, hashmoji, get_version, __author__, __version__, __license__]
 
 # Many thanks to Tim Whitlock for the best darned unicode emoji reference on the internet.
 UNICODE_EMOJI_URL = "http://apps.timwhitlock.info/emoji/tables/unicode"
@@ -127,3 +126,5 @@ if __name__ == "__main__":
             for line in iter(f.readline, ''):
                 d.update(line.encode(options.encoding))
         print(hashmoji(d))
+
+__all__ = [HashmojiException, IncompatibleDigest, InvalidByteLength, hashmoji, get_version, __author__, __version__, __license__]
