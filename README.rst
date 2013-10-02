@@ -80,7 +80,6 @@ Hashmoji is designed to work with either a bytes object or a `hashlib digest <ht
 	# Use with hashlib
 	>>> import hashlib
 	>>> hashmoji(hashlib.sha1(b"This is my test string."))
-	hashmoji(hashlib.sha1(b"This is my test string."))
 	'📱 🔢 📩 🚦📲'
 
 	# Use with bytes as long as the bytes are divisible by 4 bytes
