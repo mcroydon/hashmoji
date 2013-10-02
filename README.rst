@@ -85,13 +85,10 @@ Hashmoji is designed to work with either a bytes object or a `hashlib digest <ht
 
 	# Use with bytes as long as the bytes are divisible by 4 bytes
 	>>> mybytes = b'\x916\xb8|\x1b\xf7&\xaa\x92(;OQX\x95^w\x1c\xb2\xd6\xbe\xb9_\x8b\xcf\xdcO\xa3\x8f\xcf\xdbq\x89\xd0\nF\xce1\x81\xca\xdd\x15\xf4\xe1\x10\x807\x19\x1b\x0f\xe8\x86\x08\xf7O\x19\xf1\x16\xf3\x93\x97\xfa{\x81'
-	
 	>>> len(mybytes)
 	64
-
 	>>> len(mybytes) % 4
 	0
-
 	>>> hashmoji(mybytes)
 	'🏆 💙 🌀 🍒 🕕 🐯 💃 🎡 ⚡ 🔙 🚐 ➗ 🐟 ➡ 👍🏭'
 
