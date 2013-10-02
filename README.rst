@@ -13,7 +13,7 @@ Business.  But it's fun alpha-quality stuff that you may enjoy.
 Installation
 ============
 
-Make sure you have `Python 3 <http://www.python.org/getit/>` installed.  On Mac OS X you can install
+Make sure you have `Python 3 <http://www.python.org/getit/>`_ installed.  On Mac OS X you can install
 Python 3 via homebrew::
 
 	brew update
@@ -24,18 +24,18 @@ Once you have Python 3 installed you can clone this repository and install it::
 	git@github.com:mcroydon/hashmoji.git
 	python3 setup.py install
 
-Or if you have `PIP <http://www.pip-installer.org/>`::
+Or if you have `PIP <http://www.pip-installer.org/>`_::
 
 	pip3 install hashmoji
 
 
-You may also want to consider installing Hashmoji in a `Virtualenv <http://www.virtualenv.org/>`.
+You may also want to consider installing Hashmoji in a `Virtualenv <http://www.virtualenv.org/>`_.
 
 Command-line usage
 ==================
 
 Hashmoji ships as both an executable utility and as a Python module that you can use to visualize output from
-`hashlib <http://docs.python.org/3/library/hashlib.html>` or any bytes object divisible by 4 bytes.
+`hashlib <http://docs.python.org/3/library/hashlib.html>`_ or any bytes object divisible by 4 bytes.
 
 To use hashmoji similar to sha1sum::
 
@@ -72,7 +72,7 @@ Hashmoji has only been tested on Mac OS X 10.8 in Terminal.app.  It definitely d
 Library usage
 =============
 
-Hashmoji is designed to work with either a bytes object or a `hashlib digest <http://docs.python.org/3/library/hashlib.html>`::
+Hashmoji is designed to work with either a bytes object or a `hashlib digest <http://docs.python.org/3/library/hashlib.html>`_::
 
 	>>> from hashmoji import hashmoji
 	
