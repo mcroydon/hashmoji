@@ -21,10 +21,11 @@ Python 3 via homebrew::
 
 Once you have Python 3 installed you can clone this repository and install it::
 
-	git@github.com:mcroydon/hashmoji.git
+	git clone git@github.com:mcroydon/hashmoji.git
+	cd hashmoji
 	python3 setup.py install
 
-Or if you have `PIP <http://www.pip-installer.org/>`_::
+Or if you have `PIP <http://www.pip-installer.org/>`_ (recommended)::
 
 	pip3 install hashmoji
 
