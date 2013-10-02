@@ -6,7 +6,7 @@ from optparse import OptionParser
 __author__ = "Matt Croydon"
 __version__ = (0, 1, 0)
 __license__ = "BSD"
-__all__ = [HashmojiException, IncompatibleDigest, InvalidByteLength, hashmoji, get_version, __author__, __version__, __license__]
+__all__ = ['HashmojiException', 'IncompatibleDigest', 'InvalidByteLength', 'hashmoji', 'get_version', '__author__', '__version__', '__license__']
 
 # Many thanks to Tim Whitlock for the best darned unicode emoji reference on the internet.
 UNICODE_EMOJI_URL = "http://apps.timwhitlock.info/emoji/tables/unicode"
@@ -35,7 +35,7 @@ def hashmoji(digest_or_bytes):
         digest = digest_or_bytes
     else:
         size = digest_or_bytes.digest_size
-        digest = digest_or_bytes.digest()        
+        digest = digest_or_bytes.digest()
 
     if size % BYTE_SIZE:
         raise IncompatibleDigest("{0} is not divisible by {1}.".format(size, BYTE_SIZE))
@@ -51,7 +51,7 @@ def hashmoji(digest_or_bytes):
 
 def _findmoji(the_bytes):
     """
-    Look up an emoji based on ``BYTE_SIZE``. 
+    Look up an emoji based on ``BYTE_SIZE``.
     """
     if len(the_bytes) != 4:
         raise InvalidByteLength("{0} is {1} bytes not {2}.".format(the_bytes, len(the_bytes), BYTE_SIZE))
@@ -59,7 +59,7 @@ def _findmoji(the_bytes):
     # Normalize the index to a floating point number between 0 and 1.
     normalized_index = index / MAX_INT
     # Spread results between 0 and 842.
-    final_index = normalized_index * 842 + 1; 
+    final_index = normalized_index * 842 + 1;
     # Group result buckets by integer.
     return _lookup(int(final_index))
 
