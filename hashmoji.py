@@ -112,21 +112,23 @@ if __name__ == "__main__":
     format_group = OptionGroup(parser, "Format Options")
     format_group.add_option("-t", "--text", dest="text", action="store_true", help="Read the file in text mode (default).")
     format_group.add_option("-b", "--binary", dest="binary", action="store_true", help="Read the file in binary mode.")
-    format_group.add_option("-x", "--hex", dest="hex", action="store_true", help="Read the file as hexidecimal encoded binary data, such as a hexdigest.")
+    format_group.add_option("-x", "--hex", dest="hex", action="store_true", help="Read the file as hexidecimal encoded binary data, such as a hexdigest.  Implies --no-hash.")
     format_group.add_option("-e", "--encoding", dest="encoding", help="Encoding to be used for text.  (default is utf-8)", default="utf-8")
     parser.add_option_group(format_group)
     (options, args) = parser.parse_args()
-    if (len(args)) != 1:
-        parser.error("A single file argument is required.")
+    if (len(args)) > 1:
+        parser.error("Either a single file argument or no argument is required.")
     if options.binary or options.hex:
         mode = "rb"
     elif options.text or not (options.binary or options.hex):
         mode = "rt"
     if options.no_hash and options.text:
         parser.error("Non-hashed text mode is not supported.")
-    with open(args[0], mode) as f:
-        d = hashlib.new(options.algorithm)
-        raw = bytearray()
+    if options.hex:
+        options.no_hash = True
+    d = hashlib.new(options.algorithm)
+    raw = bytearray()
+    with open(args[0], mode) if len(args) == 1 else sys.stdin as f:          
         if options.binary:
             while True:
                 for hunk in f.read(512*64):
@@ -135,7 +137,7 @@ if __name__ == "__main__":
                             raw.extend(hunk)
                         else:
                             d.update(hunk)
-        elif options.text:         
-            for line in iter(f.readline, ''):
+        elif options.text or not (options.binary and options.hex and options.text):
+            for line in f.readlines():
                 d.update(line.encode(options.encoding))
-        print(hashmoji(d))
+    print(hashmoji(d))
