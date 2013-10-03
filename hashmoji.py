@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
-import sys
-from optparse import OptionParser
+import binascii, sys
+from io import BytesIO
+from optparse import OptionParser, OptionGroup
 
 __author__ = "Matt Croydon"
-__version__ = (0, 1, 1)
+__version__ = (0, 1, 2)
 __license__ = "BSD"
 __all__ = ['HashmojiException', 'IncompatibleDigest', 'InvalidByteLength', 'hashmoji', 'get_version', '__author__', '__version__', '__license__']
 
@@ -102,28 +103,39 @@ def get_version():
 
 if __name__ == "__main__":
     import hashlib
-    usage = "usage: %prog [options] FILE"
+    usage = "usage: %prog [options] FILE or no arguments for stdin"
     parser = OptionParser(usage=usage, version="%prog {0}".format(get_version()))
     parser.add_option("-a", "--algorithm", dest="algorithm", type="choice",
         choices=list(hashlib.algorithms_available), help="Use ALGORITHM from hashlib.  Choices: {0}".format(list(hashlib.algorithms_available)), metavar="ALGORITHM", default="sha1")
-    parser.add_option("-t", "--text", dest="text", action="store_true", help="Read the file in text mode (default).", default=True)
-    parser.add_option("-b", "--binary", dest="binary", action="store_true", help="Read the file in binary mode.")
-    parser.add_option("-e", "--encoding", dest="encoding", help="Encoding to be used for text.  (default is utf-8)", default="utf-8")
+    parser.add_option("-n", "--no-hash", dest="no_hash", action="store_true",
+        help="Treat the content as binary data divisible by {0} bytes suitable for conversion to emoji".format(BYTE_SIZE))
+    format_group = OptionGroup(parser, "Format Options")
+    format_group.add_option("-t", "--text", dest="text", action="store_true", help="Read the file in text mode (default).")
+    format_group.add_option("-b", "--binary", dest="binary", action="store_true", help="Read the file in binary mode.")
+    format_group.add_option("-x", "--hex", dest="hex", action="store_true", help="Read the file as hexidecimal encoded binary data, such as a hexdigest.")
+    format_group.add_option("-e", "--encoding", dest="encoding", help="Encoding to be used for text.  (default is utf-8)", default="utf-8")
+    parser.add_option_group(format_group)
     (options, args) = parser.parse_args()
     if (len(args)) != 1:
         parser.error("A single file argument is required.")
-    if options.binary:
+    if options.binary or options.hex:
         mode = "rb"
-    else:
+    elif options.text or not (options.binary or options.hex):
         mode = "rt"
+    if options.no_hash and options.text:
+        parser.error("Non-hashed text mode is not supported.")
     with open(args[0], mode) as f:
         d = hashlib.new(options.algorithm)
+        raw = bytearray()
         if options.binary:
             while True:
                 for hunk in f.read(512*64):
                     if hunk:
-                        d.update(hunk)
-        else:
+                        if options.no_hash:
+                            raw.extend(hunk)
+                        else:
+                            d.update(hunk)
+        elif options.text:         
             for line in iter(f.readline, ''):
                 d.update(line.encode(options.encoding))
         print(hashmoji(d))
