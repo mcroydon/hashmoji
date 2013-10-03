@@ -101,9 +101,7 @@ Hashmoji is designed to work with either a bytes object or a `hashlib digest <ht
 To Do
 =====
 
-* Support conversion of hex-encoded bytes via ``binascii.unhexlify``.
-* Support input via a stdin or a command-line argument in order make it easier to pipe content to hashmoji.
-* Be smarter about not loading 
+* Be smarter about not loading file contents in to memory sometimes.
 
 License
 =======
