@@ -65,7 +65,7 @@ To see all available options, please run ``hashmoji.py --help``::
         -t, --text          Read the file in text mode (default).
         -b, --binary        Read the file in binary mode.
         -x, --hex           Read the file as hexidecimal encoded binary data, such
-                            as a hexdigest.
+                            as a hexdigest.  Implies --no-hash.
         -e ENCODING, --encoding=ENCODING
                             Encoding to be used for text.  (default is utf-8)
 
@@ -74,6 +74,13 @@ You can use a specific hash algorithm based on the algorithms available to hashl
 
 	$ hashmoji.py -a sha512 README.rst 
 	👵 🚁 😮 🕞 🇩🇪 🔶 🌊 🚫 🎍 🔞 ✔ 🆚 🎁 🚜 🍢🎋
+
+New in 0.1.2, you can also omit a ``FILE`` and pipe stdin to hashmoji.  This is particularly useful when combined with hex format
+for visualizing the output of programs that include a single line of hex-encoded data such as ``git`` or ``md5 -q``::
+
+    $ git rev-parse HEAD | hashmoji.py -x
+    ♦ 🐢 👣 👸🀄
+
 
 Hashmoji has only been tested on Mac OS X 10.8 in Terminal.app.  It definitely doesn't work inside a screen session.  Trust me.
 
