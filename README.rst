@@ -45,23 +45,30 @@ To use hashmoji similar to sha1sum::
 
 To see all available options, please run ``hashmoji.py --help``::
 
-	$ hashmoji.py --help
-	Usage: hashmoji.py [options] FILE
+    mattbookpro:hashmoji mcroydon$ python3 hashmoji.py -h
+    Usage: hashmoji.py [options] FILE or no arguments for stdin
 
-	Options:
-  	--version             show program's version number and exit
-  	-h, --help            show this help message and exit
-  	-a ALGORITHM, --algorithm=ALGORITHM
-                          Use ALGORITHM from hashlib.  Choices:
-                          ['dsaEncryption', 'mdc2', 'ecdsa-with-SHA1', 'DSA-
-                          SHA', 'SHA', 'SHA256', 'SHA512', 'sha384', 'SHA224',
-                          'sha512', 'dsaWithSHA', 'sha1', 'ripemd160', 'MDC2',
-                          'DSA', 'sha', 'RIPEMD160', 'sha256', 'SHA384', 'MD4',
-                          'md5', 'sha224', 'md4', 'SHA1', 'MD5']
-  	-t, --text            Read the file in text mode (default).
-  	-b, --binary          Read the file in binary mode.
-  	-e ENCODING, --encoding=ENCODING
-                          Encoding to be used for text.  (default is utf-8)
+    Options:
+      --version             show program's version number and exit
+      -h, --help            show this help message and exit
+      -a ALGORITHM, --algorithm=ALGORITHM
+                            Use ALGORITHM from hashlib.  Choices: ['SHA512',
+                            'sha512', 'sha384', 'ecdsa-with-SHA1', 'SHA256',
+                            'dsaEncryption', 'SHA384', 'MDC2', 'SHA224',
+                            'RIPEMD160', 'dsaWithSHA', 'MD4', 'sha', 'MD5',
+                            'sha224', 'md4', 'md5', 'sha1', 'sha256', 'mdc2',
+                            'DSA-SHA', 'ripemd160', 'DSA', 'SHA1', 'SHA']
+      -n, --no-hash         Treat the content as binary data divisible by 4 bytes
+                            suitable for conversion to emoji
+
+      Format Options:
+        -t, --text          Read the file in text mode (default).
+        -b, --binary        Read the file in binary mode.
+        -x, --hex           Read the file as hexidecimal encoded binary data, such
+                            as a hexdigest.
+        -e ENCODING, --encoding=ENCODING
+                            Encoding to be used for text.  (default is utf-8)
+
 
 You can use a specific hash algorithm based on the algorithms available to hashlib::
 
@@ -90,6 +97,13 @@ Hashmoji is designed to work with either a bytes object or a `hashlib digest <ht
 	0
 	>>> hashmoji(mybytes)
 	'🏆 💙 🌀 🍒 🕕 🐯 💃 🎡 ⚡ 🔙 🚐 ➗ 🐟 ➡ 👍🏭'
+
+To Do
+=====
+
+* Support conversion of hex-encoded bytes via ``binascii.unhexlify``.
+* Support input via a stdin or a command-line argument in order make it easier to pipe content to hashmoji.
+* Be smarter about not loading 
 
 License
 =======
