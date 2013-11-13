@@ -4,17 +4,14 @@ Hashmoji
 
 Hashmoji is a simple Python 3 program and library for visualizing content hashes as emoji.
 
+.. image:: https://secure.travis-ci.org/mcroydon/hashmoji.png
+   :target: https://secure.travis-ci.org/mcroydon/hashmoji
+
 About
 =====
 
 Hashmoji is really just an executable joke.  It is not intended to be secure or meet the needs of Serious
 Business.  But it's fun alpha-quality stuff that you may enjoy.
-
-Status
-======
-
-.. image:: https://secure.travis-ci.org/mcroydon/hashmoji.png
-   :target: https://secure.travis-ci.org/mcroydon/hashmoji
 
 Installation
 ============
