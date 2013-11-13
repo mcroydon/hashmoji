@@ -123,6 +123,14 @@ If you have neither::
 
 	$ python3 tests.py
 
+Changelog
+=========
+
+* 0.1.3: Added tests, fixed an incorrect exception being raised when ``bytes`` with incorrect length were used.
+* 0.1.2: Added support for stdin, added ``--hex`` and ``--no-hash`` options.
+* 0.1.1: Fixed a pip install issue.
+* 0.1.0: Initial version. 
+
 To Do
 =====
 
