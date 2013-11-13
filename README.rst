@@ -82,7 +82,7 @@ for visualizing the output of programs that include a single line of hex-encoded
     ♦ 🐢 👣 👸🀄
 
 
-Hashmoji has only been tested on Mac OS X 10.8 in Terminal.app.  It definitely doesn't work inside a screen session.  Trust me.
+Hashmoji has only been tested on Mac OS X 10.8 and 10.9 in Terminal.app.  It definitely doesn't work inside a screen session.  Trust me.
 
 Library usage
 =============
@@ -104,6 +104,21 @@ Hashmoji is designed to work with either a bytes object or a `hashlib digest <ht
 	0
 	>>> hashmoji(mybytes)
 	'🏆 💙 🌀 🍒 🕕 🐯 💃 🎡 ⚡ 🔙 🚐 ➗ 🐟 ➡ 👍🏭'
+
+Testing
+=======
+
+If you have `setuptools <http://pythonhosted.org/setuptools/>`_::
+
+	$ python3 setup.py test
+
+If you have `nose <http://nose.readthedocs.org>`_::
+
+	$ nosetests
+
+If you have neither::
+
+	$ python3 tests.py
 
 To Do
 =====

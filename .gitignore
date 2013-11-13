@@ -1,3 +1,5 @@
 MANIFEST
 __pycache__
 dist
+hashmoji.egg-info
+*.pyc

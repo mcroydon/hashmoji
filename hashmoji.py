@@ -5,7 +5,7 @@ from io import BytesIO
 from optparse import OptionParser, OptionGroup
 
 __author__ = "Matt Croydon"
-__version__ = (0, 1, 2)
+__version__ = (0, 1, 3)
 __license__ = "BSD"
 __all__ = ['HashmojiException', 'IncompatibleDigest', 'InvalidByteLength', 'hashmoji', 'get_version', '__author__', '__version__', '__license__']
 
@@ -34,12 +34,14 @@ def hashmoji(digest_or_bytes):
     if (isinstance(digest_or_bytes, bytes)):
         size = len(digest_or_bytes)
         digest = digest_or_bytes
+        if size % BYTE_SIZE:
+            raise InvalidByteLength("{0} is not divisible by {1}.".format(size, BYTE_SIZE))
     else:
         size = digest_or_bytes.digest_size
         digest = digest_or_bytes.digest()
+        if size % BYTE_SIZE:
+            raise IncompatibleDigest("{0} is not divisible by {1}.".format(size, BYTE_SIZE))
 
-    if size % BYTE_SIZE:
-        raise IncompatibleDigest("{0} is not divisible by {1}.".format(size, BYTE_SIZE))
     index = 0
     return_string = ""
     while index < size:
