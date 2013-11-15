@@ -15,6 +15,7 @@ setup(
     py_modules=["hashmoji"],
     scripts=["hashmoji.py"],
     test_suite="tests.test_suite",
+    license="BSD",
     classifiers=[
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
