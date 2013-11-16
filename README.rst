@@ -4,6 +4,8 @@ Hashmoji
 
 Hashmoji is a simple Python 3 program and library for visualizing content hashes as emoji.
 
+Hashmoji has been tested with Python 3.2, 3.3, and pypy3.
+
 .. image:: https://secure.travis-ci.org/mcroydon/hashmoji.png
    :target: https://secure.travis-ci.org/mcroydon/hashmoji
 
